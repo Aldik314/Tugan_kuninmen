@@ -6,7 +6,5 @@ body {
     background-image: url(../img/bg_m.png);
     display: flex;
     justify-content: center;
-    width: 800px;
-    height: 550px;
     margin:auto;
 }
