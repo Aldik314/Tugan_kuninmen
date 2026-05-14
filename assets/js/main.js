@@ -67,6 +67,11 @@ const draw = () => {
             loadedFrames[currentFrame].width * img_size, 
             loadedFrames[currentFrame].height * img_size);
     }
+
+    const title = resources.images.title;
+    if (title.isLoaded) {
+        ctx.drawImage(title.image, 234, 160)
+    }
 }
 
 const loop = () => {

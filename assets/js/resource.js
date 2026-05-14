@@ -4,7 +4,8 @@ class Resources {
         this.toLoad = {
             game_border: "./assets/img/bg/game_b.png",
             background_clouds: "./assets/img/bg/bg_m.png",
-            background_ground: "./assets/img/bg/bg.png"
+            background_ground: "./assets/img/bg/bg.png",
+            title: "./assets/img/title1.png"
         };
 
         // To keep the images
