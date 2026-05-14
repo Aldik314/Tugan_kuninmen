@@ -9,28 +9,29 @@ canvas.height = 600;
 let cloudOffset = 0;
 const CLOUD_SPEED = 0.01;
 
+const img_size = 0.6;
 const frames = [];
 const frameCount = 15;
 
+// Store actual Image objects, not just paths
+const loadedFrames = [];
+let framesLoaded = 0;
+let currentFrame = 0;
+
+// Preload all images
 for (let i = 1; i <= frameCount; i++) {
-    frames.push(`./assets/img/m_sitting/${i}.png`);
+    const img = new Image();
+    img.src = `./assets/img/m_sitting/${i}.png`;
+    img.onload = () => {
+        framesLoaded++;
+        console.log(`Loaded ${framesLoaded}/${frameCount} frames`);
+    };
+    loadedFrames.push(img);
 }
 
-let frameIndex = 0;
-const baseImage = new Image();
-baseImage.src = frames[0];
-
 setInterval(() => {
-    frameIndex = (frameIndex + 1) % frames.length;
-    baseImage.src = frames[frameIndex];
+    currentFrame = (currentFrame + 1) % frameCount;
 }, 240);
-
-let isBaseImageLoaded = false;
-
-baseImage.onload = function() {
-    isBaseImageLoaded = true;
-    console.log("Base image loaded");
-};
 
 const draw = () => {
     const game_border = resources.images.game_border;
@@ -61,8 +62,10 @@ const draw = () => {
         ctx.drawImage(background_ground.image, 6, 42)
     }
 
-    if (isBaseImageLoaded) {
-        ctx.drawImage(baseImage, 6, 42)
+    if (loadedFrames[currentFrame] && loadedFrames[currentFrame].complete) {
+        ctx.drawImage(loadedFrames[currentFrame], 90, 450, 
+            loadedFrames[currentFrame].width * img_size, 
+            loadedFrames[currentFrame].height * img_size);
     }
 }
 
