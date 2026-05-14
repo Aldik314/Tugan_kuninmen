@@ -7,7 +7,7 @@ canvas.width = 814;
 canvas.height = 600;
 
 let cloudOffset = 0;
-const CLOUD_SPEED = 0.02;
+const CLOUD_SPEED = 0.05;
 
 const draw = () => {
     const game_border = resources.images.game_border;
